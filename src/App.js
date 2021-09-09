@@ -1,8 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 import MovieLikedBy from "./MovieLikedBy";
-
 
 
 const profiles = [
@@ -126,8 +125,12 @@ for (let [index, movie] of Object.entries(movies)) {
 
 // finding the not favorite movie
 for (let movie of Object.values(movies)) {
-  if (!movies_fav_list[movie.name]) {
-    movies_fav_list[movie.name] = ["None of the current users liked this movie"];
+  if (!movies_fav_list[movie.id]) {
+    movies_fav_list[movie.id] = {
+      movie_id: movie.id,
+      movie_name: movie.name,
+      users: ["None of the current users liked this movie"]
+    };
   }
 }
 
@@ -152,7 +155,7 @@ function App() {
       <div className="container">
         {
           movies_fav_list.map(movie => {
-            return  <MovieLikedBy key={movie.id} movie_by_users={movie}/>
+            return <MovieLikedBy key={movie.id} movie_by_users={movie}/>;
           })
         }
       </div>
